@@ -10,11 +10,18 @@ import qualified Data.Map as Map
 intersect :: (Ord a) => [a] -> [a] -> [a]
 intersect _ [] = []
 intersect list1 list2 = 
-    let ht = Map.fromList [(x,True) | x <- list2] 
+    let ht = hashTableFromList list2
     in 
     [x | x <- list1, boolFromMaybe $ Map.lookup x ht]
 
 --helpers 
+
+
+
+hashTableFromList :: Ord k => [k] -> Map.Map k Bool
+hashTableFromList x =
+    Map.fromList [(ls,True) | ls <- x]
+
 
 boolFromMaybe :: Maybe Bool -> Bool 
 boolFromMaybe a  = case a of  
