@@ -50,7 +50,7 @@ findMissingLetter "" = ""
 findMissingLetter xs =
     let ht = hashTableBoolFromList [toLower x | x <- xs, x /= ' ']
     in
-    [x | x <- ['a'..'z'], isNothing $ (Map.lookup . toLower) x ht]
+    [x | x <- ['a'..'z'], isNothing $ Map.lookup x ht]
 
     
 --helpers
