@@ -9,10 +9,12 @@
 module Chapter8 
     (intersect
     ,findFirstDup
+    ,findMissingLetter
     ) where
 
 import qualified Data.Map as Map
-import Data.Maybe ( isJust )
+import Data.Maybe ( isJust, isNothing )
+import Data.Char (toLower)
 
 --Excercise1
 {-
@@ -37,6 +39,19 @@ findFirstDup ht (x:xs)
     where maybeInsert =  insertLookup x True ht
           alreadyExisted = isJust $ fst maybeInsert
           insertLookup kx x t = Map.insertLookupWithKey (\_ a _ -> a) kx x t
+
+--Excercise3
+{-
+Given a string that contains all the letters of the alphabet except one,
+return the missing letter
+-}
+findMissingLetter :: String -> String 
+findMissingLetter "" = "" 
+findMissingLetter xs =
+    let ht = hashTableBoolFromList [toLower x | x <- xs, x /= ' ']
+    in
+    [x | x <- ['a'..'z'], isNothing (Map.lookup (toLower x) ht)]
+
     
 --helpers
 

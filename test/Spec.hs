@@ -1,5 +1,5 @@
 import Test.Hspec ( hspec, describe, it, shouldBe )
-import Chapter8 as C8 (intersect, findFirstDup)
+import Chapter8 as C8 (intersect, findFirstDup, findMissingLetter)
 import qualified Data.Map as Map
 
 main :: IO ()
@@ -21,3 +21,11 @@ main = hspec $ do
             C8.findFirstDup Map.empty ["a","b","c","d", "c", "e","f"] `shouldBe` "c"
         it "finds the first duplicate worst case" $ do 
             C8.findFirstDup Map.empty ["a","b","c","d","e","f","g","g"] `shouldBe` "g"
+
+    describe "Chapter8.findMissingLetter" $ do 
+        it "returns an empty string for an empty string" $
+            C8.findMissingLetter "" `shouldBe` ""
+        it "returns the missing letter or the first if multiple" $
+            C8.findMissingLetter "the quick brown box jumps over a lazy dog" `shouldBe` "f" 
+        it "still works with mixed case" $
+            C8.findMissingLetter "tHe QUIck Brown Box Jumps over A lazy Dog" `shouldBe` "f"
