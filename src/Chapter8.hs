@@ -25,7 +25,7 @@ intersect _ [] = []
 intersect list1 list2 = 
     let ht = hashTableBoolFromList list2
     in 
-    [x | x <- list1, Just True ==  Map.lookup x ht]
+    [x | x <- list1, isJust $ Map.lookup x ht]
 
 --Excercise2
 {-
@@ -35,22 +35,22 @@ findFirstDup :: Map.Map String Bool -> [String] -> String
 findFirstDup _ [] = ""
 findFirstDup ht (x:xs)  
     | alreadyExisted = x
-    | otherwise = findFirstDup (snd maybeInsert) xs 
+    | otherwise = (findFirstDup . snd) maybeInsert xs 
     where maybeInsert =  insertLookup x True ht
-          alreadyExisted = isJust $ fst maybeInsert
+          alreadyExisted = isJust . fst $ maybeInsert
           insertLookup kx x t = Map.insertLookupWithKey (\_ a _ -> a) kx x t
 
 --Excercise3
 {-
 Given a string that contains all the letters of the alphabet except one,
-return the missing letter
+return the missing letter in O(N)
 -}
 findMissingLetter :: String -> String 
 findMissingLetter "" = "" 
 findMissingLetter xs =
     let ht = hashTableBoolFromList [toLower x | x <- xs, x /= ' ']
     in
-    [x | x <- ['a'..'z'], isNothing (Map.lookup (toLower x) ht)]
+    [x | x <- ['a'..'z'], isNothing $ (Map.lookup . toLower) x ht]
 
     
 --helpers
