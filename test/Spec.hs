@@ -1,5 +1,5 @@
 import Test.Hspec ( hspec, describe, it, shouldBe )
-import Chapter8 as C8 (intersect, findFirstDup, findMissingLetter)
+import Chapter8 as C8 (intersect, findFirstDup, findMissingLetter,firstNonDupLetter)
 import qualified Data.Map as Map
 
 main :: IO ()
@@ -29,3 +29,9 @@ main = hspec $ do
             C8.findMissingLetter "the quick brown box jumps over a lazy dog" `shouldBe` "f" 
         it "still works with mixed case" $
             C8.findMissingLetter "tHe QUIck Brown Box Jumps over A lazy Dog" `shouldBe` "f"
+
+    describe "Chapter8.firstNonDupLetter" $ do
+        it "returns and empty string for an empty string" $
+            C8.firstNonDupLetter Map.empty "" "" `shouldBe` "" 
+        it "returns the first non duplicated letter" $
+            C8.firstNonDupLetter Map.empty "minimum" "minimum" `shouldBe` "n"

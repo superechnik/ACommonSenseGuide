@@ -10,11 +10,16 @@ module Chapter8
     (intersect
     ,findFirstDup
     ,findMissingLetter
+    ,firstNonDupLetter
     ) where
 
 import qualified Data.Map as Map
-import Data.Maybe ( isJust, isNothing )
+import Data.Maybe ( isJust, isNothing,fromMaybe)
 import Data.Char (toLower)
+
+--trace:
+--import Debug.Trace
+-- firstNonDupLetter a b c| trace ("nonDups " ++ show a ++ " " ++ show c) False = undefined
 
 --Excercise1
 {-
@@ -52,9 +57,27 @@ findMissingLetter xs =
     in
     [x | x <- ['a'..'z'], isNothing $ Map.lookup x ht]
 
-    
+--Excercise4
+{-
+Given a string, return the first non-duplicated letter and return it
+in O(N)
+-}
+firstNonDupLetter :: (Show a, Ord a, Num a) => Map.Map Char a -> [Char] -> [Char] -> [Char]
+firstNonDupLetter m "" orig = take 1 [r | r <- orig, Map.lookup r m == Just 0]
+firstNonDupLetter m (x:xs) orig = 
+    let look =  Map.lookup x m
+        inserted = if isJust look then Map.insert x 1 m else Map.insert x 0 m 
+        newHt = Map.update f x inserted
+    in  firstNonDupLetter newHt xs orig
+    where
+        f x = if x > 0 then Just (x+1) else Just (x+0)
+        
 --helpers
 
 hashTableBoolFromList :: Ord k => [k] -> Map.Map k Bool
 hashTableBoolFromList x =
     Map.fromList [(ls,True) | ls <- x]
+
+hashTableIntFromList :: Ord k => [k] -> Map.Map k Int
+hashTableIntFromList x =
+    Map.fromList [(ls,0) | ls <- x]
