@@ -34,7 +34,7 @@ main = hspec $ do
             C8.findMissingLetter "tHe QUIck Brown Box Jumps over A lazy Dog" `shouldBe` "f"
 
     describe "Chapter8.firstNonDupLetter" $ do
-        it "returns and empty string for an empty string" $
+        it "returns an empty string for an empty string" $
             C8.firstNonDupLetter Map.empty "" "" `shouldBe` "" 
         it "returns the first non duplicated letter" $
             C8.firstNonDupLetter Map.empty "minimum" "minimum" `shouldBe` "n"
