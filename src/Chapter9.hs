@@ -4,9 +4,10 @@ questions 2,3,4 can be demonstrated with code.
 -}
 module Chapter9
 (popTwice 
+,dequeueTwice
 )where
 
-import Queue as Q (enqueue,dequeue,peek)
+import Queue as Q 
 import Stack as S
 
 
@@ -23,6 +24,17 @@ popTwice stack =
     in  S.peek twice
 
 --Excercise 3
+{-
+if you enqueue 1,2,3,4,5,6 onto a queue and dequeue twice, what number
+could you read from the queue
+-}
+dequeueTwice :: Q.Queue a -> a 
+dequeueTwice queue = 
+    let once = snd $ Q.dequeue queue 
+        twice = snd $ Q.dequeue once 
+    in  Q.peek twice
+
+
 --Excercise 4
 
 

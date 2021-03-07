@@ -3,14 +3,24 @@ module Queue
 (dequeue
 ,enqueue
 ,peek
+,fromList
+,QueueClass
+,Queue 
 )where
 
-class Queue a where 
-    dequeue :: [a] -> (a, [a])
-    enqueue :: a -> [a] -> [a]
-    peek :: [a] -> a
+type Queue a = [a]
 
-instance Queue a where 
+class QueueClass a where 
+    dequeue :: Queue a -> (a, Queue a)
+    enqueue :: a -> Queue a -> Queue a
+    peek :: Queue a -> a
+    fromList :: [a] -> Queue a
+
+instance QueueClass a where 
     dequeue (x:xs) = (x,xs)
+    
     enqueue val ls = ls ++ [val]
-    peek ls = ls !! (length ls - 1)
+    
+    peek ls = head ls
+
+    fromList ls = ls
