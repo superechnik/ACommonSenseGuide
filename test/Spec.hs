@@ -1,6 +1,9 @@
 import Test.Hspec ( hspec, describe, it, shouldBe )
 import Chapter8 as C8 (intersect, findFirstDup, findMissingLetter,firstNonDupLetter)
 import qualified Data.Map as Map
+import Stack 
+import Queue 
+import Chapter9 as C9 
 
 main :: IO ()
 main = hspec $ do
@@ -35,3 +38,7 @@ main = hspec $ do
             C8.firstNonDupLetter Map.empty "" "" `shouldBe` "" 
         it "returns the first non duplicated letter" $
             C8.firstNonDupLetter Map.empty "minimum" "minimum" `shouldBe` "n"
+
+    describe "Chapter9.popTwice" $ do 
+        it "returns the correct value" $ 
+            (C9.popTwice . Stack.fromList) [1,2,3,4,5,6] `shouldBe` 4
