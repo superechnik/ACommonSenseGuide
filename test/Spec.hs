@@ -34,7 +34,7 @@ main = hspec $ do
             C8.findMissingLetter "tHe QUIck Brown Box Jumps over A lazy Dog" `shouldBe` "f"
 
     describe "Chapter8.firstNonDupLetter" $ do
-        it "returns and empty string for an empty string" $
+        it "returns an empty string for an empty string" $
             C8.firstNonDupLetter Map.empty "" "" `shouldBe` "" 
         it "returns the first non duplicated letter" $
             C8.firstNonDupLetter Map.empty "minimum" "minimum" `shouldBe` "n"
@@ -42,3 +42,7 @@ main = hspec $ do
     describe "Chapter9.popTwice" $ do 
         it "returns the correct value" $ 
             (C9.popTwice . Stack.fromList) [1,2,3,4,5,6] `shouldBe` 4
+
+    describe "Chapter9.dequeueTwice" $ do
+        it "returns the correct value" $
+            (C9.dequeueTwice . Queue.fromList) [1,2,3,4,5,6] `shouldBe` 3
