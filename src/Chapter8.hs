@@ -28,7 +28,7 @@ Find the intersection of two lists using a hashtable in O(N)
 intersect :: (Ord a) => [a] -> [a] -> [a]
 intersect _ [] = []
 intersect list1 list2 = 
-    let ht = hashTableBoolFromList list2
+    let ht = hashTableFromList list2 False
     in 
     [x | x <- list1, isJust $ Map.lookup x ht]
 
@@ -53,7 +53,7 @@ return the missing letter in O(N)
 findMissingLetter :: String -> String 
 findMissingLetter "" = "" 
 findMissingLetter xs =
-    let ht = hashTableBoolFromList [toLower x | x <- xs, x /= ' ']
+    let ht = hashTableFromList [toLower x | x <- xs, x /= ' '] False
     in
     [x | x <- ['a'..'z'], isNothing $ Map.lookup x ht]
 
@@ -70,14 +70,10 @@ firstNonDupLetter m (x:xs) orig =
         newHt = Map.update f x inserted
     in  firstNonDupLetter newHt xs orig
     where
-        f x = if x > 0 then Just (x+1) else Just (x+0)
+        f x = if x > 0 then Just (x+1) else Just x 
         
 --helpers
 
-hashTableBoolFromList :: Ord k => [k] -> Map.Map k Bool
-hashTableBoolFromList x =
-    Map.fromList [(ls,True) | ls <- x]
-
-hashTableIntFromList :: Ord k => [k] -> Map.Map k Int
-hashTableIntFromList x =
-    Map.fromList [(ls,0) | ls <- x]
+hashTableFromList :: Ord k => [k] -> a -> Map.Map k a
+hashTableFromList x a = 
+    Map.fromList [(ls,a) | ls <- x]
