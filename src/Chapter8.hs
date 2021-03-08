@@ -62,7 +62,6 @@ findMissingLetter xs =
 Given a string, return the first non-duplicated letter and return it
 in O(N)
 -}
-firstNonDupLetter :: (Show a, Ord a, Num a) => Map.Map Char a -> [Char] -> [Char] -> [Char]
 firstNonDupLetter m "" orig = take 1 [r | r <- orig, Map.lookup r m == Just 0]
 firstNonDupLetter m (x:xs) orig = 
     let look =  Map.lookup x m

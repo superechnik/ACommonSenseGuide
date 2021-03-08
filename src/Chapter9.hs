@@ -5,6 +5,7 @@ questions 2,3,4 can be demonstrated with code.
 module Chapter9
 (popTwice 
 ,dequeueTwice
+,reverseStringWithStack
 )where
 
 import Queue as Q 
@@ -36,8 +37,12 @@ dequeueTwice queue =
 
 
 --Excercise 4
-
-
-
-
-    
+{-
+Use a stack to reverse a string
+-}
+reverseStringWithStack :: String -> String 
+reverseStringWithStack [] = []
+reverseStringWithStack str = 
+    let stack = S.fromList str 
+        popped = S.pop stack 
+    in  fst popped : reverseStringWithStack (snd popped)
