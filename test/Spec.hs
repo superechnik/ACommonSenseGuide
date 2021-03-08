@@ -46,3 +46,9 @@ main = hspec $ do
     describe "Chapter9.dequeueTwice" $ do
         it "returns the correct value" $
             (C9.dequeueTwice . Queue.fromList) [1,2,3,4,5,6] `shouldBe` 3
+
+    describe "Chapter9.reverseString" $ do 
+        it "returns empty string for an empty string" $ 
+            C9.reverseStringWithStack [] `shouldBe` [] 
+        it "reverses a string" $ do 
+            C9.reverseStringWithStack "hello world" `shouldBe` reverse "hello world"
