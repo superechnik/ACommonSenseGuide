@@ -4,6 +4,7 @@ import qualified Data.Map as Map
 import Stack 
 import Queue 
 import Chapter9 as C9 
+import Chapter10 as C10
 
 main :: IO ()
 main = hspec $ do
@@ -52,3 +53,7 @@ main = hspec $ do
             C9.reverseStringWithStack [] `shouldBe` [] 
         it "reverses a string" $ do 
             C9.reverseStringWithStack "hello world" `shouldBe` reverse "hello world"
+
+    describe "Chapter10.flattenArray" $ do 
+        it "takes a jagged array and flattens it" $ do 
+            C10.readNestedList C10.input `shouldBe` [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,30,31,32,33]
