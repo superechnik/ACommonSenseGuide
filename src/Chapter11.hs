@@ -11,3 +11,5 @@ accept an array of strings and return the total number of characters
 -}
 countChars :: [String] -> Int
 countChars [] = 0 
+countChars (x:xs) = 
+    length x + countChars(xs)
