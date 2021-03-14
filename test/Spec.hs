@@ -65,5 +65,11 @@ main = hspec $ do
         it "returns 0 for an empty array" $ do 
             C11.countChars [] `shouldBe` 0
 
+    describe "Chapter10.justEvens" $ do
+        it "returns an empty string for an empty string" $ do 
+            C11.justEvens [] `shouldBe` [] 
+        it "return just the evens" $ do 
+            C11.justEvens [1,2,3,4,5] `shouldBe` [2,4]
+
     
             
