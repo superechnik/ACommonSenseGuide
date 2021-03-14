@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8c7c51f3b118ba97d09b985b2d93ee21f9850f0ffdc4f2454c2e0ac7a29f754c
+-- hash: f175558fa45c7f2fd546e38fdbd6d801f8de04842fd6644f408423087eed603f
 
 name:           ACommonSenseGuide
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       Chapter10
+      Chapter11
       Chapter8
       Chapter9
       Queue
