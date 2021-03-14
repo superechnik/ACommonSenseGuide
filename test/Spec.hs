@@ -5,6 +5,7 @@ import Stack
 import Queue 
 import Chapter9 as C9 
 import Chapter10 as C10
+import Chapter11 as C11
 
 main :: IO ()
 main = hspec $ do
@@ -57,3 +58,12 @@ main = hspec $ do
     describe "Chapter10.flattenArray" $ do 
         it "takes a jagged array and flattens it" $ do 
             C10.readNestedList C10.input `shouldBe` [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,29,30,31,32,33]
+
+    describe "Chapter10.countChars" $ do 
+        it "takes an array of strings and counts the chars" $ do 
+            C11.countChars ["ab", "c", "def", "ghij"] `shouldBe` 10 
+        it "returns 0 for an empty array" $ do 
+            C11.countChars [] `shouldBe` 0
+
+    
+            
